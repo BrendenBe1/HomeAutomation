@@ -8,12 +8,12 @@ import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TimePicker;
 
-public class ThermoSettings extends AppCompatActivity {
+public class LightSettings extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_thermo_settings);
+        setContentView(R.layout.activity_light_settings);
 
         onClick();
     }
@@ -22,15 +22,6 @@ public class ThermoSettings extends AppCompatActivity {
     {
         TimePicker pickTime = (TimePicker) findViewById(R.id.timePicker);
 
-        // instantiate number picker
-        NumberPicker pickNumber = (NumberPicker) findViewById(R.id.numberPickerSettings);
-
-
-
-        // set min and max values on the number picker
-        pickNumber.setMinValue(50);
-        pickNumber.setMaxValue(100);
-        pickNumber.setValue(70);
 
         // instatiate buttons
         Button Back = (Button) findViewById(R.id.buttonBack);
@@ -55,7 +46,5 @@ public class ThermoSettings extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), Thermostat1.class));
             }
         });
-
-
     }
 }

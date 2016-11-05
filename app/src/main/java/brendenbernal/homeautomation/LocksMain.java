@@ -7,14 +7,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.Objects;
-
-public class ChooseThermostat extends AppCompatActivity {
+public class LocksMain extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_thermostat);
+        setContentView(R.layout.activity_locks_main);
 
         String buttonName = "";
 
@@ -35,11 +33,11 @@ public class ChooseThermostat extends AppCompatActivity {
     public void onClick(final String buttonName)
     {
 
-        Button LivingRoom = (Button) findViewById(R.id.buttonLivingRoom);
-        Button MasterBedroom = (Button) findViewById(R.id.buttonMasterBed);
+        Button FrontDoor = (Button) findViewById(R.id.buttonFrontDoor);
+        Button BackDoor = (Button) findViewById(R.id.buttonBackDoor);
         final Button newButton = (Button) findViewById(R.id.button3);
         Button Back = (Button) findViewById(R.id.buttonBack);
-        Button editButtons = (Button) findViewById(R.id.buttonEditThermoList);
+        Button editLocks = (Button) findViewById(R.id.buttonEditLockList);
 
         if(buttonName.equals("null"))
         {
@@ -54,25 +52,25 @@ public class ChooseThermostat extends AppCompatActivity {
 
 
         // set intent so can pass in name to thermostat activity
-        final Intent intent = new Intent(getApplicationContext(), Thermostat1.class);
+        final Intent intent = new Intent(getApplicationContext(), LockAction.class);
 
-        LivingRoom.setOnClickListener(new View.OnClickListener()
+        FrontDoor.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View v)
             {
-                intent.putExtra("name", "Living Room");
+                intent.putExtra("name", "Front Door");
                 startActivity(intent);
             }
         });
 
-        MasterBedroom.setOnClickListener(new View.OnClickListener()
+        BackDoor.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View v)
             {
                 // putExtra makes it so you can send variables or values to next activity
-                intent.putExtra("name", "Master Bedroom");
+                intent.putExtra("name", "Back Door");
                 startActivity(intent);
             }
         });
@@ -88,7 +86,7 @@ public class ChooseThermostat extends AppCompatActivity {
             }
         });
 
-        editButtons.setOnClickListener(new View.OnClickListener()
+        editLocks.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View v)

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
@@ -9,9 +10,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="brendenbernal.homeautomation.MainActivity"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/interior"
     android:orientation="vertical">
-
 
     <TextView
         android:text="Home Automation"
@@ -20,9 +20,10 @@
         android:id="@+id/textView2"
         android:textAlignment="center"
         android:textStyle="normal|bold"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/background_dark"
         android:textSize="30sp"
-        android:background="@color/colorPrimary"
+        android:background="@android:color/background_light"
+        android:alpha="0.5"
         android:layout_weight="0.01" />
 
     <Button
@@ -32,8 +33,9 @@
         android:id="@+id/buttonLights"
         android:layout_weight="0.00"
         android:visibility="visible"
-        android:background="@android:color/holo_blue_dark"
-        android:textColor="@color/colorPrimaryDark"
+        android:background="#dedada"
+        android:alpha="0.5"
+        android:textColor="@android:color/background_dark"
         android:textSize="24sp" />
 
     <Button
@@ -42,8 +44,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/buttonLocks"
         android:layout_weight="0.04"
-        android:background="@android:color/holo_blue_light"
-        android:textColor="@color/colorPrimaryDark"
+        android:background="@android:color/background_light"
+        android:alpha="0.5"
+        android:textColor="@android:color/background_dark"
         android:textSize="24sp" />
 
     <Button
@@ -52,7 +55,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/buttonThermo"
         android:layout_weight="0.04"
-        android:background="@android:color/holo_blue_bright"
-        android:textColor="@color/colorPrimaryDark"
+        android:background="#dedada"
+        android:alpha="0.5"
+        android:textColor="@android:color/background_dark"
         android:textSize="24sp" />
 </LinearLayout>

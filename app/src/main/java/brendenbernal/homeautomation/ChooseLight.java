@@ -7,14 +7,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.Objects;
-
-public class ChooseThermostat extends AppCompatActivity {
+public class ChooseLight extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_thermostat);
+        setContentView(R.layout.activity_choose_light);
 
         String buttonName = "";
 
@@ -35,11 +33,13 @@ public class ChooseThermostat extends AppCompatActivity {
     public void onClick(final String buttonName)
     {
 
-        Button LivingRoom = (Button) findViewById(R.id.buttonLivingRoom);
-        Button MasterBedroom = (Button) findViewById(R.id.buttonMasterBed);
+        Button livingRoomLight = (Button) findViewById(R.id.buttonLivingRoomLight);
+        Button kitchenLight = (Button) findViewById(R.id.buttonKitchenLight);
+        Button porchLight = (Button) findViewById(R.id.buttonPorchLight);
+        Button backPatio = (Button) findViewById(R.id.buttonBackPatio);
         final Button newButton = (Button) findViewById(R.id.button3);
         Button Back = (Button) findViewById(R.id.buttonBack);
-        Button editButtons = (Button) findViewById(R.id.buttonEditThermoList);
+        Button editLights = (Button) findViewById(R.id.buttonEditLightList);
 
         if(buttonName.equals("null"))
         {
@@ -54,9 +54,9 @@ public class ChooseThermostat extends AppCompatActivity {
 
 
         // set intent so can pass in name to thermostat activity
-        final Intent intent = new Intent(getApplicationContext(), Thermostat1.class);
+        final Intent intent = new Intent(getApplicationContext(), LightAction.class);
 
-        LivingRoom.setOnClickListener(new View.OnClickListener()
+        livingRoomLight.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View v)
@@ -66,13 +66,35 @@ public class ChooseThermostat extends AppCompatActivity {
             }
         });
 
-        MasterBedroom.setOnClickListener(new View.OnClickListener()
+        kitchenLight.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View v)
             {
                 // putExtra makes it so you can send variables or values to next activity
-                intent.putExtra("name", "Master Bedroom");
+                intent.putExtra("name", "Kitchen");
+                startActivity(intent);
+            }
+        });
+
+        porchLight.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick (View v)
+            {
+                // putExtra makes it so you can send variables or values to next activity
+                intent.putExtra("name", "porch");
+                startActivity(intent);
+            }
+        });
+
+        backPatio.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick (View v)
+            {
+                // putExtra makes it so you can send variables or values to next activity
+                intent.putExtra("name", "Back Patio");
                 startActivity(intent);
             }
         });
@@ -88,7 +110,7 @@ public class ChooseThermostat extends AppCompatActivity {
             }
         });
 
-        editButtons.setOnClickListener(new View.OnClickListener()
+        editLights.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View v)

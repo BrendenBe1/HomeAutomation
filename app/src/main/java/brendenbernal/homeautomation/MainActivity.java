@@ -30,5 +30,23 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), ChooseThermostat.class));
             }
         });
+
+        Locks.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick (View v)
+            {
+                startActivity(new Intent(getApplicationContext(), LocksMain.class));
+            }
+        });
+
+        Lights.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick (View v)
+            {
+                startActivity(new Intent(getApplicationContext(), ChooseLight.class));
+            }
+        });
     }
 }
