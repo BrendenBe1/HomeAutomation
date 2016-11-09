@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/lights"
     tools:context="brendenbernal.homeautomation.ChooseLight"
     android:orientation="vertical">
 
@@ -16,28 +16,31 @@
         android:text="Choose Light"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewChooseLock"
+        android:id="@+id/textViewChooseLight"
         android:textAlignment="center"
         android:textStyle="normal|bold"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/background_dark"
         android:textSize="30sp"
-        android:background="@color/colorPrimary"
+        android:background="@android:color/background_light"
+        android:alpha="0.5"
         android:layout_weight="0.07" />
 
     <Button
         android:text="Living Room"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonLivingRoomLight"
-        android:background="@android:color/holo_blue_dark"
-        android:textColor="@color/colorPrimaryDark" />
+        android:id="@+id/buttonLight1"
+        android:background="#dedada"
+        android:alpha="0.5"
+        android:textColor="@android:color/background_dark" />
 
     <Button
         android:text="Kitchen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonKitchenLight"
-        android:background="@android:color/holo_blue_light"
+        android:id="@+id/buttonLight2"
+        android:background="@android:color/background_light"
+        android:alpha="0.5"
         android:textColor="@color/colorPrimaryDark" />
 
 
@@ -45,23 +48,27 @@
         android:text="Porch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonPorchLight"
-        android:background="@android:color/holo_blue_bright" />
+        android:id="@+id/buttonLight3"
+        android:background="#dedada"
+        android:alpha="0.5"
+        android:textColor="@android:color/background_dark" />
 
     <Button
         android:text="Back Patio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonBackPatio"
-        android:background="@android:color/holo_blue_dark" />
+        android:id="@+id/buttonLight4"
+        android:background="@android:color/background_light"
+        android:alpha="0.5" />
 
     <Button
         android:text="Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button3"
-        android:background="@android:color/holo_blue_light"
-        android:textColor="@color/colorPrimaryDark" />
+        android:id="@+id/buttonLight5"
+        android:background="#dedada"
+        android:alpha="0.5"
+        android:textColor="@android:color/background_dark" />
 
     <view
         android:layout_width="match_parent"
@@ -75,7 +82,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buttonEditLightList"
-        android:background="@android:color/holo_blue_bright"
+        android:background="@android:color/background_light"
+        android:alpha="0.5"
         android:textColor="@color/colorPrimaryDark" />
 
     <Button
@@ -83,7 +91,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buttonBack"
-        android:background="@android:color/holo_blue_dark"
-        android:textColor="@color/colorPrimaryDark" />
+        android:background="#dedada"
+        android:alpha="0.5"
+        android:textColor="@android:color/background_dark" />
 
 </LinearLayout>

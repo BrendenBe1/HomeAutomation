@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/lights"
     tools:context="brendenbernal.homeautomation.LightSettings"
     android:orientation="vertical">
 
@@ -16,19 +16,21 @@
         android:text="Settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2"
+        android:id="@+id/textViewChooseLock"
         android:textAlignment="center"
         android:textStyle="normal|bold"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/background_dark"
         android:textSize="30sp"
-        android:background="@color/colorPrimary"
+        android:background="@android:color/background_light"
+        android:alpha="0.5"
         android:layout_weight="0.07" />
 
     <TimePicker
         android:layout_width="wrap_content"
         android:layout_height="145dp"
-        android:id="@+id/timePicker"
-        android:background="@android:color/holo_blue_light"
+        android:id="@+id/timePickerLight"
+        android:background="#dedada"
+        android:alpha="0.75"
         android:timePickerMode="spinner"
         android:layout_gravity="center" />
 
@@ -42,8 +44,10 @@
         android:layout_width="212dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:id="@+id/switch2"
+        android:id="@+id/lightSettingsSwitch"
         android:layout_weight="0.13"
+        android:background="@android:color/background_light"
+        android:alpha="0.5"
         android:textSize="24sp" />
 
     <Space
@@ -56,7 +60,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buttonSetTime"
-        android:background="@android:color/holo_blue_dark"
+        android:background="#dedada"
+        android:alpha="0.5"
         android:textColor="@color/colorPrimaryDark"
         android:layout_weight="0.12" />
 
@@ -65,7 +70,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buttonBack"
-        android:background="@android:color/holo_blue_light"
+        android:background="@android:color/background_light"
+        android:alpha="0.5"
         android:textColor="@color/colorPrimaryDark"
         android:layout_weight="0.10" />
 
