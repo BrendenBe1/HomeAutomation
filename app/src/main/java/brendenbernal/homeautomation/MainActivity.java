@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClick()
     {
-        Button Thermostat = (Button) findViewById(R.id.buttonThermo);
+        Button Thermostat = (Button) findViewById(R.id.buttonThermostats);
         Button Lights = (Button) findViewById(R.id.buttonLights);
         Button Locks = (Button) findViewById(R.id.buttonLocks);
 

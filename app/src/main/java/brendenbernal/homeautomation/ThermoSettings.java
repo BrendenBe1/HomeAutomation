@@ -15,15 +15,22 @@ public class ThermoSettings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thermo_settings);
 
-        onClick();
+        // get room name from last activity
+        Intent thermoActivity = getIntent();
+        String thermoRoom = thermoActivity.getStringExtra("name");
+
+        onClick(thermoRoom);
+
     }
 
-    public void onClick()
+    public void onClick(final String roomName)
     {
-        TimePicker pickTime = (TimePicker) findViewById(R.id.timePicker);
+        final Intent intent = new Intent(getApplicationContext(), Thermostat1.class);
+
+        TimePicker pickTime = (TimePicker) findViewById(R.id.timePickerThermoSettings);
 
         // instantiate number picker
-        NumberPicker pickNumber = (NumberPicker) findViewById(R.id.numberPickerSettings);
+        NumberPicker pickNumber = (NumberPicker) findViewById(R.id.numberPickerThermoSettings);
 
 
 
@@ -42,7 +49,9 @@ public class ThermoSettings extends AppCompatActivity {
             @Override
             public void onClick (View v)
             {
-                startActivity(new Intent(getApplicationContext(), Thermostat1.class));
+                //startActivity(new Intent(getApplicationContext(), Thermostat1.class));
+                intent.putExtra("name", roomName);
+                startActivity(intent);
             }
         });
 
@@ -52,7 +61,9 @@ public class ThermoSettings extends AppCompatActivity {
             @Override
             public void onClick (View v)
             {
-                startActivity(new Intent(getApplicationContext(), Thermostat1.class));
+                //startActivity(new Intent(getApplicationContext(), Thermostat1.class));
+                intent.putExtra("name", roomName);
+                startActivity(intent);
             }
         });
 

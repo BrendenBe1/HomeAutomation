@@ -15,12 +15,19 @@ public class LightSettings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_light_settings);
 
-        onClick();
+        // get room name from last activity
+        Intent lightActivity = getIntent();
+        String lightRoom = lightActivity.getStringExtra("name");
+
+        onClick(lightRoom);
     }
 
-    public void onClick()
+    public void onClick(final String roomName)
     {
-        TimePicker pickTime = (TimePicker) findViewById(R.id.timePicker);
+
+        final Intent intent = new Intent(getApplicationContext(), LightAction.class);
+
+        TimePicker pickTime = (TimePicker) findViewById(R.id.timePickerLight);
 
 
         // instatiate buttons
@@ -33,7 +40,9 @@ public class LightSettings extends AppCompatActivity {
             @Override
             public void onClick (View v)
             {
-                startActivity(new Intent(getApplicationContext(), Thermostat1.class));
+                //startActivity(new Intent(getApplicationContext(), LightAction.class));
+                intent.putExtra("name", roomName);
+                startActivity(intent);
             }
         });
 
@@ -43,7 +52,9 @@ public class LightSettings extends AppCompatActivity {
             @Override
             public void onClick (View v)
             {
-                startActivity(new Intent(getApplicationContext(), Thermostat1.class));
+                //startActivity(new Intent(getApplicationContext(), LightAction.class));
+                intent.putExtra("name", roomName);
+                startActivity(intent);
             }
         });
     }

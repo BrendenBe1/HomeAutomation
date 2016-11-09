@@ -33,28 +33,28 @@ public class LocksMain extends AppCompatActivity {
     public void onClick(final String buttonName)
     {
 
-        Button FrontDoor = (Button) findViewById(R.id.buttonFrontDoor);
-        Button BackDoor = (Button) findViewById(R.id.buttonBackDoor);
-        final Button newButton = (Button) findViewById(R.id.button3);
+        Button Lock1 = (Button) findViewById(R.id.buttonLock1);
+        Button Lock2 = (Button) findViewById(R.id.buttonLock2);
+        final Button Lock3 = (Button) findViewById(R.id.buttonLock3);
         Button Back = (Button) findViewById(R.id.buttonBack);
         Button editLocks = (Button) findViewById(R.id.buttonEditLockList);
 
         if(buttonName.equals("null"))
         {
-            newButton.setVisibility(View.GONE);
+            Lock3.setVisibility(View.GONE);
             Log.d("blank name", buttonName);
         }
         else
         {
-            newButton.setVisibility(View.VISIBLE);
-            newButton.setText(buttonName);
+            Lock3.setVisibility(View.VISIBLE);
+            Lock3.setText(buttonName);
         }
 
 
         // set intent so can pass in name to thermostat activity
         final Intent intent = new Intent(getApplicationContext(), LockAction.class);
 
-        FrontDoor.setOnClickListener(new View.OnClickListener()
+        Lock1.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View v)
@@ -64,7 +64,7 @@ public class LocksMain extends AppCompatActivity {
             }
         });
 
-        BackDoor.setOnClickListener(new View.OnClickListener()
+        Lock2.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View v)
@@ -75,7 +75,7 @@ public class LocksMain extends AppCompatActivity {
             }
         });
 
-        newButton.setOnClickListener(new View.OnClickListener()
+        Lock3.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View v)
@@ -91,7 +91,7 @@ public class LocksMain extends AppCompatActivity {
             @Override
             public void onClick (View v)
             {
-                startActivity(new Intent(getApplicationContext(), AddThermostat.class));
+                startActivity(new Intent(getApplicationContext(), AddLock.class));
             }
         });
 

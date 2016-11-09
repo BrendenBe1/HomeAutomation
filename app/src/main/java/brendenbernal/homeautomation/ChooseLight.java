@@ -33,11 +33,11 @@ public class ChooseLight extends AppCompatActivity {
     public void onClick(final String buttonName)
     {
 
-        Button livingRoomLight = (Button) findViewById(R.id.buttonLivingRoomLight);
-        Button kitchenLight = (Button) findViewById(R.id.buttonKitchenLight);
-        Button porchLight = (Button) findViewById(R.id.buttonPorchLight);
-        Button backPatio = (Button) findViewById(R.id.buttonBackPatio);
-        final Button newButton = (Button) findViewById(R.id.button3);
+        Button Light1 = (Button) findViewById(R.id.buttonLight1);
+        Button Light2 = (Button) findViewById(R.id.buttonLight2);
+        Button Light3 = (Button) findViewById(R.id.buttonLight3);
+        Button Light4 = (Button) findViewById(R.id.buttonLight4);
+        final Button newButton = (Button) findViewById(R.id.buttonLight5);
         Button Back = (Button) findViewById(R.id.buttonBack);
         Button editLights = (Button) findViewById(R.id.buttonEditLightList);
 
@@ -56,7 +56,7 @@ public class ChooseLight extends AppCompatActivity {
         // set intent so can pass in name to thermostat activity
         final Intent intent = new Intent(getApplicationContext(), LightAction.class);
 
-        livingRoomLight.setOnClickListener(new View.OnClickListener()
+        Light1.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View v)
@@ -66,7 +66,7 @@ public class ChooseLight extends AppCompatActivity {
             }
         });
 
-        kitchenLight.setOnClickListener(new View.OnClickListener()
+        Light2.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View v)
@@ -77,7 +77,7 @@ public class ChooseLight extends AppCompatActivity {
             }
         });
 
-        porchLight.setOnClickListener(new View.OnClickListener()
+        Light3.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View v)
@@ -88,7 +88,7 @@ public class ChooseLight extends AppCompatActivity {
             }
         });
 
-        backPatio.setOnClickListener(new View.OnClickListener()
+        Light4.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View v)
@@ -115,7 +115,7 @@ public class ChooseLight extends AppCompatActivity {
             @Override
             public void onClick (View v)
             {
-                startActivity(new Intent(getApplicationContext(), AddThermostat.class));
+                startActivity(new Intent(getApplicationContext(), AddLight.class));
             }
         });
 

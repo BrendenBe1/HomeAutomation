@@ -21,14 +21,17 @@ public class Thermostat1 extends AppCompatActivity {
         onClick(thermostatRoom);
     }
 
-    public void onClick(String roomChoice)
+    public void onClick(final String roomChoice)
     {
+
+        final Intent intent = new Intent(getApplicationContext(), ThermoSettings.class);
+
         // set value of textView to be proper room name
-        final TextView roomName = (TextView) findViewById(R.id.textViewRoomName);
+        final TextView roomName = (TextView) findViewById(R.id.textViewChoosethermostat);
         roomName.setText(roomChoice);
 
         // instantiate number picker
-        NumberPicker pickNumber = (NumberPicker) findViewById(R.id.numberPicker);
+        NumberPicker pickNumber = (NumberPicker) findViewById(R.id.numberPickerThermo);
 
 
         // set min and max values on the number picker
@@ -56,7 +59,9 @@ public class Thermostat1 extends AppCompatActivity {
             @Override
             public void onClick (View v)
             {
-                startActivity(new Intent(getApplicationContext(), ThermoSettings.class));
+                //startActivity(new Intent(getApplicationContext(), ThermoSettings.class));
+                intent.putExtra("name", roomChoice);
+                startActivity(intent);
             }
         });
 

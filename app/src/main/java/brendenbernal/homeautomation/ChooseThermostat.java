@@ -35,28 +35,28 @@ public class ChooseThermostat extends AppCompatActivity {
     public void onClick(final String buttonName)
     {
 
-        Button LivingRoom = (Button) findViewById(R.id.buttonLivingRoom);
-        Button MasterBedroom = (Button) findViewById(R.id.buttonMasterBed);
-        final Button newButton = (Button) findViewById(R.id.button3);
+        Button Thermo1 = (Button) findViewById(R.id.buttonThermo1);
+        Button Thermo2 = (Button) findViewById(R.id.buttonThermo2);
+        final Button Thermo3 = (Button) findViewById(R.id.buttonThermo3);
         Button Back = (Button) findViewById(R.id.buttonBack);
         Button editButtons = (Button) findViewById(R.id.buttonEditThermoList);
 
         if(buttonName.equals("null"))
         {
-            newButton.setVisibility(View.GONE);
+            Thermo3.setVisibility(View.GONE);
             Log.d("blank name", buttonName);
         }
         else
         {
-            newButton.setVisibility(View.VISIBLE);
-            newButton.setText(buttonName);
+            Thermo3.setVisibility(View.VISIBLE);
+            Thermo3.setText(buttonName);
         }
 
 
         // set intent so can pass in name to thermostat activity
         final Intent intent = new Intent(getApplicationContext(), Thermostat1.class);
 
-        LivingRoom.setOnClickListener(new View.OnClickListener()
+        Thermo1.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View v)
@@ -66,7 +66,7 @@ public class ChooseThermostat extends AppCompatActivity {
             }
         });
 
-        MasterBedroom.setOnClickListener(new View.OnClickListener()
+        Thermo2.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View v)
@@ -77,7 +77,7 @@ public class ChooseThermostat extends AppCompatActivity {
             }
         });
 
-        newButton.setOnClickListener(new View.OnClickListener()
+        Thermo3.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View v)

@@ -46,7 +46,7 @@ public class AddLight extends AppCompatActivity {
             public void onClick (View v)
             {
                 // putExtra makes it so you can send variables or values to next activity
-                myDB.insertThermo(nameInput.getText().toString(), 67, "0", "0");
+                //myDB.insertThermo(nameInput.getText().toString(), 67, "0", "0");
                 intent.putExtra("name", nameInput.getText().toString());
                 startActivity(intent);
             }

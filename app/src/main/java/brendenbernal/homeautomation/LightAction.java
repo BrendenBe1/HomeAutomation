@@ -21,8 +21,10 @@ public class LightAction extends AppCompatActivity {
         onClick(lightRoom);
     }
 
-    public void onClick(String roomChoice)
+    public void onClick(final String roomChoice)
     {
+        final Intent intent = new Intent(getApplicationContext(), LightSettings.class);
+
         // set value of textView to be proper room name
         final TextView ligthName = (TextView) findViewById(R.id.textViewLightName);
         ligthName.setText(roomChoice);
@@ -48,7 +50,9 @@ public class LightAction extends AppCompatActivity {
             @Override
             public void onClick (View v)
             {
-                startActivity(new Intent(getApplicationContext(), LightSettings.class));
+                //startActivity(new Intent(getApplicationContext(), LightSettings.class));
+                intent.putExtra("name", roomChoice);
+                startActivity(intent);
             }
         });
 
