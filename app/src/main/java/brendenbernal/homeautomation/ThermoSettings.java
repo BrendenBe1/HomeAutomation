@@ -15,15 +15,20 @@ public class ThermoSettings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thermo_settings);
 
+        final DatabaseHelper db = new DatabaseHelper(this);
+
         // get room name from last activity
         Intent thermoActivity = getIntent();
-        String thermoRoom = thermoActivity.getStringExtra("name");
+        String thermostatRoom = thermoActivity.getStringExtra("name");
 
-        onClick(thermoRoom);
+
+        Thermostat thermostat = db.getThermostat(thermostatRoom);
+
+        onClick(thermostat, db);
 
     }
 
-    public void onClick(final String roomName)
+    public void onClick(final Thermostat thermostat, final DatabaseHelper db)
     {
         final Intent intent = new Intent(getApplicationContext(), Thermostat1.class);
 
@@ -37,10 +42,10 @@ public class ThermoSettings extends AppCompatActivity {
         // set min and max values on the number picker
         pickNumber.setMinValue(50);
         pickNumber.setMaxValue(100);
-        pickNumber.setValue(70);
+        pickNumber.setValue(thermostat.getStatus());
 
         // instatiate buttons
-        Button Back = (Button) findViewById(R.id.buttonBack);
+        Button back = (Button) findViewById(R.id.buttonBack);
         Button setTime = (Button) findViewById(R.id.buttonSetTime);
 
         // set time
@@ -50,19 +55,21 @@ public class ThermoSettings extends AppCompatActivity {
             public void onClick (View v)
             {
                 //startActivity(new Intent(getApplicationContext(), Thermostat1.class));
-                intent.putExtra("name", roomName);
+                intent.putExtra("name", thermostat.getName());
+                db.close();
                 startActivity(intent);
             }
         });
 
         // back button
-        Back.setOnClickListener(new View.OnClickListener()
+        back.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View v)
             {
                 //startActivity(new Intent(getApplicationContext(), Thermostat1.class));
-                intent.putExtra("name", roomName);
+                intent.putExtra("name", thermostat.getName());
+                db.close();
                 startActivity(intent);
             }
         });

@@ -14,10 +14,13 @@ public class AddThermostat extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_thermostat);
 
-        onClick();
+        //Make an instance of DB helper class
+        final DatabaseHelper db = new DatabaseHelper(this);
+
+        onClick(db);
     }
 
-    public void onClick()
+    public void onClick(final DatabaseHelper db)
     {
 
         // set intent so can pass in name to thermostat activity
@@ -43,9 +46,14 @@ public class AddThermostat extends AppCompatActivity {
             @Override
             public void onClick (View v)
             {
+                //Add new thermostat to database
+                db.insertThermostat(new Thermostat(0, nameInput.getText().toString(), 65, "0", "0"));
+
                 // putExtra makes it so you can send variables or values to next activity
-                intent.putExtra("name", nameInput.getText().toString());
-                startActivity(intent);
+                //intent.putExtra("name", nameInput.getText().toString());
+                //startActivity(intent);
+                db.close();
+                startActivity(new Intent(getApplicationContext(), ChooseThermostat.class));
             }
         });
     }
