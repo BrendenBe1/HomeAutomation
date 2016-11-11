@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 /**
  * Created by peter on 11/6/16.
@@ -23,6 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String THERMO_COL_3 = "thermo_status";
     public static final String THERMO_COL_4 = "thermo_onTime";
     public static final String THERMO_COL_5 = "thermo_offTime";
+    public static final String THERMO_COL_6 = "thermo_setTemp";
 
     public static final String LIGHT_TABLE_NAME = "lights";
     public static final String LIGHT_COL_1 = "light_id";
@@ -45,7 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE "+THERMO_TABLE_NAME+" ("+THERMO_COL_1+" INTEGER PRIMARY KEY AUTOINCREMENT, "+THERMO_COL_2+" TEXT, "+THERMO_COL_3+" INTEGER, "+THERMO_COL_4+" TEXT, "+THERMO_COL_5+" TEXT)");
+        db.execSQL("CREATE TABLE "+THERMO_TABLE_NAME+" ("+THERMO_COL_1+" INTEGER PRIMARY KEY AUTOINCREMENT, "+THERMO_COL_2+" TEXT, "+THERMO_COL_3+" INTEGER, "+THERMO_COL_4+" TEXT, "+THERMO_COL_5+" TEXT, "+THERMO_COL_6+" INTEGER)");
         db.execSQL("CREATE TABLE "+LIGHT_TABLE_NAME+" ("+LIGHT_COL_1+" INTEGER PRIMARY KEY AUTOINCREMENT, "+LIGHT_COL_2+" TEXT, "+LIGHT_COL_3+" INTEGER, "+LIGHT_COL_4+" TEXT, "+LIGHT_COL_5+" TEXT)");
         db.execSQL("CREATE TABLE "+LOCK_TABLE_NAME+" ("+LOCK_COL_1+" INTEGER PRIMARY KEY AUTOINCREMENT, "+LOCK_COL_2+" TEXT, "+LOCK_COL_3+" INTEGER)");
     }
@@ -83,8 +85,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(THERMO_COL_3, thermostat.getStatus());
         contentValues.put(THERMO_COL_4, thermostat.getOnTime());
         contentValues.put(THERMO_COL_5, thermostat.getOffTime());
+        contentValues.put(THERMO_COL_6, thermostat.getSetTemp());
         db.insert(THERMO_TABLE_NAME, null, contentValues);
-        db.close();
     }
 
     /*public boolean insertLock(String name, int status) {
@@ -120,6 +122,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 thermostat.setStatus(Integer.parseInt(cursor.getString(2)));
                 thermostat.setOnTime(cursor.getString(3));
                 thermostat.setOffTime(cursor.getString(4));
+                thermostat.setSetTemp(Integer.parseInt(cursor.getString(5)));
 
                 thermostatList.add(thermostat);
             } while (cursor.moveToNext());
@@ -131,7 +134,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Thermostat getThermostat(String name){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(THERMO_TABLE_NAME, new String[] { THERMO_COL_1,
-                        THERMO_COL_2, THERMO_COL_3, THERMO_COL_4, THERMO_COL_5 }, THERMO_COL_2 + "=?",
+                        THERMO_COL_2, THERMO_COL_3, THERMO_COL_4, THERMO_COL_5, THERMO_COL_6 }, THERMO_COL_2 + "=?",
                 new String[]{name}, null, null, null, null);
         if(cursor != null) {
             cursor.moveToFirst();
@@ -143,8 +146,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         thermostat.setStatus(Integer.parseInt(cursor.getString(2)));
         thermostat.setOnTime(cursor.getString(3));
         thermostat.setOffTime(cursor.getString(4));
+        thermostat.setSetTemp(Integer.parseInt(cursor.getString(5)));
 
         return thermostat;
+    }
+
+    public int updateThermostat(Thermostat thermostat){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(THERMO_COL_2, thermostat.getName());
+        contentValues.put(THERMO_COL_3, thermostat.getStatus());
+        contentValues.put(THERMO_COL_4, thermostat.getOnTime());
+        contentValues.put(THERMO_COL_5, thermostat.getOffTime());
+        contentValues.put(THERMO_COL_6, thermostat.getSetTemp());
+        return db.update(THERMO_TABLE_NAME, contentValues, THERMO_COL_2 + " = ?", new String[]{thermostat.getName()});
     }
 
     public Cursor getAllThermostatData(){

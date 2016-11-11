@@ -36,7 +36,7 @@ public class Thermostat1 extends AppCompatActivity {
         roomName.setText(thermostat.getName());
 
         // instantiate number picker
-        NumberPicker pickNumber = (NumberPicker) findViewById(R.id.numberPickerThermo);
+        final NumberPicker pickNumber = (NumberPicker) findViewById(R.id.numberPickerThermo);
 
 
         // set min and max values on the number picker
@@ -45,16 +45,20 @@ public class Thermostat1 extends AppCompatActivity {
         pickNumber.setValue(thermostat.getStatus());
 
         // instatiate buttons
-        Button Back = (Button) findViewById(R.id.buttonBack);
+        Button back = (Button) findViewById(R.id.buttonBack);
         Button Settings = (Button) findViewById(R.id.buttonSettings);
 
         // back button
-        Back.setOnClickListener(new View.OnClickListener()
+        back.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View v)
             {
+                Log.d("change", Integer.toString(pickNumber.getValue()));
+                Thermostat updatedThermostat = new Thermostat(thermostat.getId(), thermostat.getName(), pickNumber.getValue(), thermostat.getOnTime(), thermostat.getOffTime(), thermostat.getSetTemp());
+                db.updateThermostat(updatedThermostat);
                 db.close();
+
                 startActivity(new Intent(getApplicationContext(), ChooseThermostat.class));
             }
         });
@@ -65,8 +69,11 @@ public class Thermostat1 extends AppCompatActivity {
             @Override
             public void onClick (View v)
             {
-                //startActivity(new Intent(getApplicationContext(), ThermoSettings.class));
+                //Log.d("change", Integer.toString(pickNumber.getValue()));
+                Thermostat updatedThermostat = new Thermostat(thermostat.getId(), thermostat.getName(), pickNumber.getValue(), thermostat.getOnTime(), thermostat.getOffTime(), thermostat.getSetTemp());
+                db.updateThermostat(updatedThermostat);
                 db.close();
+
                 intent.putExtra("name", thermostat.getName());
                 startActivity(intent);
             }

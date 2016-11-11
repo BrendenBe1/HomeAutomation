@@ -47,7 +47,7 @@ public class AddThermostat extends AppCompatActivity {
             public void onClick (View v)
             {
                 //Add new thermostat to database
-                db.insertThermostat(new Thermostat(0, nameInput.getText().toString(), 65, "0", "0"));
+                db.insertThermostat(new Thermostat(0, nameInput.getText().toString(), 65, "0", "0", 65));
 
                 // putExtra makes it so you can send variables or values to next activity
                 //intent.putExtra("name", nameInput.getText().toString());
