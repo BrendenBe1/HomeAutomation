@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 /**
  * Created by peter on 11/6/16.
@@ -32,6 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String LIGHT_COL_3 = "light_status";
     public static final String LIGHT_COL_4 = "light_onTime";
     public static final String LIGHT_COL_5 = "light_offTime";
+    public static final String LIGHT_COL_6 = "light_setStatus";
 
     public static final String LOCK_TABLE_NAME = "locks";
     public static final String LOCK_COL_1 = "lock_id";
@@ -48,7 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE "+THERMO_TABLE_NAME+" ("+THERMO_COL_1+" INTEGER PRIMARY KEY AUTOINCREMENT, "+THERMO_COL_2+" TEXT, "+THERMO_COL_3+" INTEGER, "+THERMO_COL_4+" TEXT, "+THERMO_COL_5+" TEXT, "+THERMO_COL_6+" INTEGER)");
-        db.execSQL("CREATE TABLE "+LIGHT_TABLE_NAME+" ("+LIGHT_COL_1+" INTEGER PRIMARY KEY AUTOINCREMENT, "+LIGHT_COL_2+" TEXT, "+LIGHT_COL_3+" INTEGER, "+LIGHT_COL_4+" TEXT, "+LIGHT_COL_5+" TEXT)");
+        db.execSQL("CREATE TABLE "+LIGHT_TABLE_NAME+" ("+LIGHT_COL_1+" INTEGER PRIMARY KEY AUTOINCREMENT, "+LIGHT_COL_2+" TEXT, "+LIGHT_COL_3+" INTEGER, "+LIGHT_COL_4+" TEXT, "+LIGHT_COL_5+" TEXT, "+LIGHT_COL_6+" INTERGER)");
         db.execSQL("CREATE TABLE "+LOCK_TABLE_NAME+" ("+LOCK_COL_1+" INTEGER PRIMARY KEY AUTOINCREMENT, "+LOCK_COL_2+" TEXT, "+LOCK_COL_3+" INTEGER)");
     }
 
@@ -59,24 +59,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS "+LOCK_TABLE_NAME);
         onCreate(db);
     }
-
-    /*public boolean insertLight(Light light) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(LIGHT_COL_2, thermostat.getName());
-        contentValues.put(LIGHT_COL_3, thermostat.getStatus());
-        contentValues.put(LIGHT_COL_4, thermostat.getOnTime());
-        contentValues.put(LIGHT_COL_5, thermostat.getOffTime());
-        long result = db.insert(LIGHT_TABLE_NAME, null, contentValues);
-        if(result == -1) {
-            db.close();
-            return false;
-        }else {
-            db.close();
-            return true;
-        }
-    }*/
-
 
     public void insertThermostat(Thermostat thermostat) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -89,20 +71,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert(THERMO_TABLE_NAME, null, contentValues);
     }
 
-    /*public boolean insertLock(String name, int status) {
+    public void insertLight(Light light) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(LOCK_COL_2, name);
-        contentValues.put(LOCK_COL_3, status);
-        long result = db.insert(LOCK_TABLE_NAME, null, contentValues);
-        if(result == -1) {
-            db.close();
-            return false;
-        }else {
-            db.close();
-            return true;
-        }
-    }*/
+        contentValues.put(LIGHT_COL_2, light.getName());
+        contentValues.put(LIGHT_COL_3, light.getStatus());
+        contentValues.put(LIGHT_COL_4, light.getOnTime());
+        contentValues.put(LIGHT_COL_5, light.getOffTime());
+        contentValues.put(LIGHT_COL_6, light.getSetStatus());
+        db.insert(LIGHT_TABLE_NAME, null, contentValues);
+    }
+
+    public void insertLock(Lock lock) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(LOCK_COL_2, lock.getName());
+        contentValues.put(LOCK_COL_3, lock.getStatus());
+        db.insert(LOCK_TABLE_NAME, null, contentValues);
+    }
 
     //Get all thermostats
     public List<Thermostat> getAllThermostats(){
@@ -130,6 +116,58 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return thermostatList;
     }
+
+    //Get all lights
+    public List<Light> getAllLights(){
+        List<Light> lightList = new ArrayList<Light>();
+
+        //Select All query
+        String selectQuery = "SELECT * FROM "+ LIGHT_TABLE_NAME;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        //Loop all rows and add it to the list
+        if(cursor.moveToFirst()){
+            do {
+                Light light = new Light();
+                light.setId(Integer.parseInt(cursor.getString(0)));
+                light.setName(cursor.getString(1));
+                light.setStatus(Integer.parseInt(cursor.getString(2)));
+                light.setOnTime(cursor.getString(3));
+                light.setOffTime(cursor.getString(4));
+                light.setSetStatus(Integer.parseInt(cursor.getString(5)));
+
+                lightList.add(light);
+            } while (cursor.moveToNext());
+        }
+
+        return lightList;
+    }
+
+    //Get all locks
+    public List<Lock> getAllLocks(){
+        List<Lock> lockList = new ArrayList<Lock>();
+
+        //Select All query
+        String selectQuery = "SELECT * FROM "+ LOCK_TABLE_NAME;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        //Loop all rows and add it to the list
+        if(cursor.moveToFirst()){
+            do {
+                Lock lock = new Lock();
+                lock.setId(Integer.parseInt(cursor.getString(0)));
+                lock.setName(cursor.getString(1));
+                lock.setStatus(Integer.parseInt(cursor.getString(2)));
+
+                lockList.add(lock);
+            } while (cursor.moveToNext());
+        }
+
+        return lockList;
+    }
+
 
     public Thermostat getThermostat(String name){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -162,10 +200,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.update(THERMO_TABLE_NAME, contentValues, THERMO_COL_2 + " = ?", new String[]{thermostat.getName()});
     }
 
-    public Cursor getAllThermostatData(){
-        String selectQuery = "SELECT * FROM "+ THERMO_TABLE_NAME;
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        return cursor;
-    }
 }
