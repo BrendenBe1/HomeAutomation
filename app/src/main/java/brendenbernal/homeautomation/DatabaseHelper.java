@@ -189,6 +189,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return thermostat;
     }
 
+    public Light getLight(String name){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(LIGHT_TABLE_NAME, new String[] { LIGHT_COL_1,
+                        LIGHT_COL_2, LIGHT_COL_3, LIGHT_COL_4, LIGHT_COL_5, LIGHT_COL_6 }, LIGHT_COL_2 + "=?",
+                new String[]{name}, null, null, null, null);
+        if(cursor != null) {
+            cursor.moveToFirst();
+        }
+        Light light = new Light();
+
+        light.setId(Integer.parseInt(cursor.getString(0)));
+        light.setName(cursor.getString(1));
+        light.setStatus(Integer.parseInt(cursor.getString(2)));
+        light.setOnTime(cursor.getString(3));
+        light.setOffTime(cursor.getString(4));
+        light.setSetStatus(Integer.parseInt(cursor.getString(5)));
+
+        return light;
+    }
+
+    public Lock getLock(String name){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(LOCK_TABLE_NAME, new String[] { LOCK_COL_1,
+                        LOCK_COL_2, LOCK_COL_3 }, LOCK_COL_2 + "=?",
+                new String[]{name}, null, null, null, null);
+        if(cursor != null) {
+            cursor.moveToFirst();
+        }
+        Lock lock = new Lock();
+
+        lock.setId(Integer.parseInt(cursor.getString(0)));
+        lock.setName(cursor.getString(1));
+        lock.setStatus(Integer.parseInt(cursor.getString(2)));
+
+        return lock;
+    }
+
     public int updateThermostat(Thermostat thermostat){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -198,6 +235,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(THERMO_COL_5, thermostat.getOffTime());
         contentValues.put(THERMO_COL_6, thermostat.getSetTemp());
         return db.update(THERMO_TABLE_NAME, contentValues, THERMO_COL_2 + " = ?", new String[]{thermostat.getName()});
+    }
+
+    public int updateLight(Light light){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(LIGHT_COL_2, light.getName());
+        contentValues.put(LIGHT_COL_3, light.getStatus());
+        contentValues.put(LIGHT_COL_4, light.getOnTime());
+        contentValues.put(LIGHT_COL_5, light.getOffTime());
+        contentValues.put(LIGHT_COL_6, light.getSetStatus());
+        return db.update(LIGHT_TABLE_NAME, contentValues, LIGHT_COL_2 + " = ?", new String[]{light.getName()});
+    }
+
+    public int updateLock(Lock lock){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(LOCK_COL_2, lock.getName());
+        contentValues.put(LOCK_COL_3, lock.getStatus());
+        return db.update(LOCK_TABLE_NAME, contentValues, LOCK_COL_2 + " = ?", new String[]{lock.getName()});
     }
 
 }

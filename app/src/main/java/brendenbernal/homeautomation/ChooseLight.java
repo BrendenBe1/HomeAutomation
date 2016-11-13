@@ -5,7 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.List;
 
 public class ChooseLight extends AppCompatActivity {
 
@@ -14,101 +20,58 @@ public class ChooseLight extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_light);
 
-        String buttonName = "";
+        final DatabaseHelper db = new DatabaseHelper(this);
 
-        try
-        {
-            Intent newButton = getIntent();
-            buttonName = newButton.getStringExtra("name");
-            Log.d("name of new button", buttonName);
-            onClick(buttonName);
+        List<Light> lights = db.getAllLights();
+
+        String[] lightsNames = new String[lights.size()];
+
+        int i = 0;
+        for(Light light : lights){
+            lightsNames[i] = light.getName();
+            Log.d("Light Name", light.getName());
+            i++;
         }
-        catch(Exception e)
-        {
-            Log.d("nothing", "nothing");
-            onClick("null");
-        }
+        db.close();
+        populateListView(lightsNames);
+        registerClick();
+
+        onClick();
+
     }
 
-    public void onClick(final String buttonName)
+    private void populateListView(String[] lightsNames) {
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, lightsNames);
+        ListView listView = (ListView) findViewById(R.id.lightList);
+        listView.setAdapter(adapter);
+    }
+
+    public void registerClick(){
+        ListView listView = (ListView) findViewById(R.id.lightList);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView textview = (TextView) view;
+                Intent intent = new Intent(getApplicationContext(), LightAction.class);
+                intent.putExtra("name", textview.getText().toString());
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void onClick()
     {
 
-        Button Light1 = (Button) findViewById(R.id.buttonLight1);
-        Button Light2 = (Button) findViewById(R.id.buttonLight2);
-        Button Light3 = (Button) findViewById(R.id.buttonLight3);
-        Button Light4 = (Button) findViewById(R.id.buttonLight4);
-        final Button newButton = (Button) findViewById(R.id.buttonLight5);
         Button Back = (Button) findViewById(R.id.buttonBack);
         Button editLights = (Button) findViewById(R.id.buttonEditLightList);
 
-        if(buttonName.equals("null"))
-        {
-            newButton.setVisibility(View.GONE);
-            Log.d("blank name", buttonName);
-        }
-        else
-        {
-            newButton.setVisibility(View.VISIBLE);
-            newButton.setText(buttonName);
-        }
 
 
         // set intent so can pass in name to thermostat activity
         final Intent intent = new Intent(getApplicationContext(), LightAction.class);
 
-        Light1.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick (View v)
-            {
-                intent.putExtra("name", "Living Room");
-                startActivity(intent);
-            }
-        });
-
-        Light2.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick (View v)
-            {
-                // putExtra makes it so you can send variables or values to next activity
-                intent.putExtra("name", "Kitchen");
-                startActivity(intent);
-            }
-        });
-
-        Light3.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick (View v)
-            {
-                // putExtra makes it so you can send variables or values to next activity
-                intent.putExtra("name", "porch");
-                startActivity(intent);
-            }
-        });
-
-        Light4.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick (View v)
-            {
-                // putExtra makes it so you can send variables or values to next activity
-                intent.putExtra("name", "Back Patio");
-                startActivity(intent);
-            }
-        });
-
-        newButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick (View v)
-            {
-                // putExtra makes it so you can send variables or values to next activity
-                intent.putExtra("name", buttonName);
-                startActivity(intent);
-            }
-        });
 
         editLights.setOnClickListener(new View.OnClickListener()
         {

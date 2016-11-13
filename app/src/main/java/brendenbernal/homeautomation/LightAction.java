@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
+import android.widget.Switch;
 import android.widget.TextView;
 
 public class LightAction extends AppCompatActivity {
@@ -15,27 +16,34 @@ public class LightAction extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_light_action);
 
+        final DatabaseHelper db = new DatabaseHelper(this);
+
         Intent lightActivity = getIntent();
         String lightRoom = lightActivity.getStringExtra("name");
 
-        onClick(lightRoom);
+        Light light = db.getLight(lightRoom);
+
+        onClick(light, db);
+
     }
 
-    public void onClick(final String roomChoice)
+    public void onClick(final Light light, final DatabaseHelper db)
     {
         final Intent intent = new Intent(getApplicationContext(), LightSettings.class);
 
         // set value of textView to be proper room name
-        final TextView ligthName = (TextView) findViewById(R.id.textViewLightName);
-        ligthName.setText(roomChoice);
+        final TextView lightName = (TextView) findViewById(R.id.textViewLightName);
+        lightName.setText(light.getName());
 
 
         // instatiate buttons
-        Button Back = (Button) findViewById(R.id.buttonBack);
+        Button back = (Button) findViewById(R.id.buttonBack);
         Button Settings = (Button) findViewById(R.id.buttonSettings);
 
+        Switch lightSwitch = (Switch) findViewById(R.id.lightSwitch);
+
         // back button
-        Back.setOnClickListener(new View.OnClickListener()
+        back.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View v)
@@ -51,7 +59,7 @@ public class LightAction extends AppCompatActivity {
             public void onClick (View v)
             {
                 //startActivity(new Intent(getApplicationContext(), LightSettings.class));
-                intent.putExtra("name", roomChoice);
+                intent.putExtra("name", light.getName());
                 startActivity(intent);
             }
         });

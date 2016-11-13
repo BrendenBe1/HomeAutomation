@@ -23,52 +23,14 @@
         android:textSize="30sp"
         android:background="@android:color/background_light"
         android:alpha="0.5"
-        android:layout_weight="0.07" />
+        android:layout_weight="0.03" />
 
-    <Button
-        android:text="Living Room"
+
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonLight1"
-        android:background="#dedada"
-        android:alpha="0.5"
-        android:textColor="@android:color/background_dark" />
-
-    <Button
-        android:text="Kitchen"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonLight2"
-        android:background="@android:color/background_light"
-        android:alpha="0.5"
-        android:textColor="@color/colorPrimaryDark" />
-
-
-    <Button
-        android:text="Porch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonLight3"
-        android:background="#dedada"
-        android:alpha="0.5"
-        android:textColor="@android:color/background_dark" />
-
-    <Button
-        android:text="Back Patio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonLight4"
-        android:background="@android:color/background_light"
-        android:alpha="0.5" />
-
-    <Button
-        android:text="Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonLight5"
-        android:background="#dedada"
-        android:alpha="0.5"
-        android:textColor="@android:color/background_dark" />
+        android:layout_height="213dp"
+        android:id="@+id/lightList"
+        android:layout_weight="0.19" />
 
     <view
         android:layout_width="match_parent"

@@ -49,7 +49,7 @@ public class ChooseThermostat extends AppCompatActivity {
             Log.d("ThermName", thermostat.getName());
             i++;
         }
-
+        db.close();
         populateListView(thermostatNames);
         registerClick();
 
