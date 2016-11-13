@@ -256,4 +256,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.update(LOCK_TABLE_NAME, contentValues, LOCK_COL_2 + " = ?", new String[]{lock.getName()});
     }
 
+    public void deleteThermostat(Thermostat thermostat){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(THERMO_TABLE_NAME, THERMO_COL_2 + " = ?",
+                new String[]{thermostat.getName()});
+        db.close();
+    }
+
+    public void deleteLight(Light light) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(LIGHT_TABLE_NAME, LIGHT_COL_2 + " = ?",
+                new String[]{light.getName()});
+        db.close();
+    }
+
+    public void deleteLock(Lock lock) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(LOCK_TABLE_NAME, LOCK_COL_2 + " = ?",
+                new String[]{lock.getName()});
+        db.close();
+    }
+
 }

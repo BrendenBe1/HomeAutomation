@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.NumberPicker;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -42,6 +43,12 @@ public class LightAction extends AppCompatActivity {
 
         Switch lightSwitch = (Switch) findViewById(R.id.lightSwitch);
 
+        /*if(light.getStatus() == 1){
+            lightSwitch.setOnCheckedChangeListener (null);
+            lightSwitch.setChecked(true);
+            lightSwitch.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener) this);
+        }*/
+
         // back button
         back.setOnClickListener(new View.OnClickListener()
         {
@@ -59,6 +66,7 @@ public class LightAction extends AppCompatActivity {
             public void onClick (View v)
             {
                 //startActivity(new Intent(getApplicationContext(), LightSettings.class));
+                db.close();
                 intent.putExtra("name", light.getName());
                 startActivity(intent);
             }

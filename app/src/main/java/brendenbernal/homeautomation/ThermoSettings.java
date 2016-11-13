@@ -31,7 +31,7 @@ public class ThermoSettings extends AppCompatActivity {
 
     public void onClick(final Thermostat thermostat, final DatabaseHelper db)
     {
-        final Intent intent = new Intent(getApplicationContext(), Thermostat1.class);
+
 
         final TimePicker pickTime = (TimePicker) findViewById(R.id.timePickerThermoSettings);
         if(!thermostat.getOnTime().equals("0")){
@@ -54,6 +54,8 @@ public class ThermoSettings extends AppCompatActivity {
         Button back = (Button) findViewById(R.id.buttonBack);
         Button setTime = (Button) findViewById(R.id.buttonSetTime);
 
+
+        final Intent intent = new Intent(getApplicationContext(), Thermostat1.class);
         // set time
         setTime.setOnClickListener(new View.OnClickListener()
         {

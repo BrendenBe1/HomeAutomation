@@ -36,7 +36,7 @@ public class ChooseLight extends AppCompatActivity {
         populateListView(lightsNames);
         registerClick();
 
-        onClick();
+        onClick(db);
 
     }
 
@@ -61,33 +61,28 @@ public class ChooseLight extends AppCompatActivity {
         });
     }
 
-    public void onClick()
+    public void onClick(final DatabaseHelper db)
     {
 
-        Button Back = (Button) findViewById(R.id.buttonBack);
+        Button back = (Button) findViewById(R.id.buttonBack);
         Button editLights = (Button) findViewById(R.id.buttonEditLightList);
 
 
-
-        // set intent so can pass in name to thermostat activity
-        final Intent intent = new Intent(getApplicationContext(), LightAction.class);
-
-
-        editLights.setOnClickListener(new View.OnClickListener()
-        {
+        editLights.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick (View v)
-            {
+            public void onClick (View v) {
+                db.close();
                 startActivity(new Intent(getApplicationContext(), AddLight.class));
             }
         });
 
         // back button
-        Back.setOnClickListener(new View.OnClickListener()
+        back.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View v)
             {
+                db.close();
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });

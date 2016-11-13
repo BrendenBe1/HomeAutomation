@@ -14,12 +14,12 @@ public class AddLight extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_light);
-        myDB = new DatabaseHelper(this);
+        final DatabaseHelper db = new DatabaseHelper(this);
 
-        onClick();
+        onClick(db);
     }
 
-    public void onClick()
+    public void onClick(final DatabaseHelper db)
     {
 
         // set intent so can pass in name to thermostat activity
@@ -46,9 +46,11 @@ public class AddLight extends AppCompatActivity {
             public void onClick (View v)
             {
                 // putExtra makes it so you can send variables or values to next activity
-                //myDB.insertThermo(nameInput.getText().toString(), 67, "0", "0");
-                intent.putExtra("name", nameInput.getText().toString());
-                startActivity(intent);
+
+                db.insertLight(new Light(0, nameInput.getText().toString(), 0, "0", "0", 0));
+                db.close();
+
+                startActivity(new Intent(getApplicationContext(), ChooseLight.class));
             }
         });
     }
