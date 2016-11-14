@@ -55,22 +55,20 @@ public class ThermoSettings extends AppCompatActivity {
         Button setTime = (Button) findViewById(R.id.buttonSetTime);
 
 
-        final Intent intent = new Intent(getApplicationContext(), Thermostat1.class);
+        final Intent intent = new Intent(getApplicationContext(), ThermostatAction.class);
         // set time
         setTime.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View v)
             {
-                //startActivity(new Intent(getApplicationContext(), Thermostat1.class));
                 String time = (Integer.toString(pickTime.getHour())+":"+Integer.toString(pickTime.getMinute()));
 
                 Thermostat updatedThermostat = new Thermostat(thermostat.getId(), thermostat.getName(), thermostat.getStatus(), time, thermostat.getOffTime(), pickNumber.getValue());
-
                 db.updateThermostat(updatedThermostat);
+                db.close();
 
                 intent.putExtra("name", thermostat.getName());
-                db.close();
                 startActivity(intent);
             }
         });
@@ -81,7 +79,6 @@ public class ThermoSettings extends AppCompatActivity {
             @Override
             public void onClick (View v)
             {
-                //startActivity(new Intent(getApplicationContext(), Thermostat1.class));
                 intent.putExtra("name", thermostat.getName());
                 db.close();
                 startActivity(intent);

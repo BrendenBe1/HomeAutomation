@@ -13,65 +13,65 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class ChooseLight extends AppCompatActivity {
+public class ChooseLock extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_light);
+        setContentView(R.layout.activity_locks_main);
 
         final DatabaseHelper db = new DatabaseHelper(this);
 
-        List<Light> lights = db.getAllLights();
+        List<Lock> locks = db.getAllLocks();
 
-        String[] lightsNames = new String[lights.size()];
+        String[] locksNames = new String[locks.size()];
 
         int i = 0;
-        for(Light light : lights){
-            lightsNames[i] = light.getName();
+        for(Lock lock : locks){
+            locksNames[i] = lock.getName();
             i++;
         }
         db.close();
-        populateListView(lightsNames);
+        populateListView(locksNames);
         registerClick();
 
-        onClick(db);
 
+        onClick();
     }
 
-    private void populateListView(String[] lightsNames) {
+    private void populateListView(String[] locksNames) {
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, lightsNames);
-        ListView listView = (ListView) findViewById(R.id.lightList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, locksNames);
+        ListView listView = (ListView) findViewById(R.id.lockList);
         listView.setAdapter(adapter);
     }
 
     public void registerClick(){
-        ListView listView = (ListView) findViewById(R.id.lightList);
+        ListView listView = (ListView) findViewById(R.id.lockList);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView textview = (TextView) view;
-                Intent intent = new Intent(getApplicationContext(), LightAction.class);
+                Intent intent = new Intent(getApplicationContext(), LockAction.class);
                 intent.putExtra("name", textview.getText().toString());
                 startActivity(intent);
             }
         });
     }
 
-    public void onClick(final DatabaseHelper db)
-    {
+
+    public void onClick() {
 
         Button back = (Button) findViewById(R.id.buttonBack);
-        Button editLights = (Button) findViewById(R.id.buttonEditLightList);
+        Button editLocks = (Button) findViewById(R.id.buttonEditLockList);
 
-
-        editLights.setOnClickListener(new View.OnClickListener() {
+        editLocks.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick (View v) {
-                db.close();
-                startActivity(new Intent(getApplicationContext(), AddLight.class));
+            public void onClick (View v)
+            {
+                startActivity(new Intent(getApplicationContext(), AddLock.class));
             }
         });
 
@@ -81,7 +81,6 @@ public class ChooseLight extends AppCompatActivity {
             @Override
             public void onClick (View v)
             {
-                db.close();
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });

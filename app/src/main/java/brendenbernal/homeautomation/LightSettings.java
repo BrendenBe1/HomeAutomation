@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
+import android.widget.Switch;
 import android.widget.TimePicker;
 
 public class LightSettings extends AppCompatActivity {
@@ -43,6 +44,12 @@ public class LightSettings extends AppCompatActivity {
         Button back = (Button) findViewById(R.id.buttonBack);
         Button setTime = (Button) findViewById(R.id.buttonSetTime);
 
+        final Switch lightSwitch = (Switch) findViewById(R.id.lightSettingsSwitch);
+
+        if(light.getSetStatus() == 1){
+            lightSwitch.setChecked(true);
+        }
+
 
         final Intent intent = new Intent(getApplicationContext(), LightAction.class);
         // set time
@@ -51,13 +58,14 @@ public class LightSettings extends AppCompatActivity {
             @Override
             public void onClick (View v)
             {
-                //startActivity(new Intent(getApplicationContext(), LightAction.class));
-
+                int status = 0;
+                if(lightSwitch.isChecked()){
+                    status = 1;
+                }
                 String time = (Integer.toString(pickTime.getHour())+":"+Integer.toString(pickTime.getMinute()));
-                Light updatedLight = new Light(light.getId(), light.getName(), light.getStatus(), time, light.getOffTime(), light.getSetStatus());
+                Light updatedLight = new Light(light.getId(), light.getName(), light.getStatus(), time, light.getOffTime(), status);
                 db.updateLight(updatedLight);
                 db.close();
-
                 intent.putExtra("name", light.getName());
 
                 startActivity(intent);

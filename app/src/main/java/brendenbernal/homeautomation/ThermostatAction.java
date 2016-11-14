@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
-public class Thermostat1 extends AppCompatActivity {
+public class ThermostatAction extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

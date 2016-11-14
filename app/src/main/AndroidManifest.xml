@@ -16,13 +16,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".ChooseThermostat" />
-        <activity android:name=".Thermostat1" />
+        <activity android:name=".ThermostatAction" />
         <activity android:name=".ThermoSettings" />
         <activity android:name=".AddThermostat" />
-        <activity android:name=".LocksMain" />
+        <activity android:name=".ChooseLock" />
         <activity android:name=".LockAction" />
         <activity android:name=".ChooseLight" />
         <activity android:name=".AddLight" />
+        <activity android:name=".AddLock" />
         <activity android:name=".LightAction" />
         <activity android:name=".LightSettings"></activity>
     </application>

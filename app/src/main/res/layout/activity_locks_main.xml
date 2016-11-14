@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/lock"
-    tools:context="brendenbernal.homeautomation.LocksMain"
+    tools:context="brendenbernal.homeautomation.ChooseLock"
     android:orientation="vertical">
 
     <TextView
@@ -25,36 +25,12 @@
         android:textColor="@android:color/background_dark"
         android:layout_weight="0.07" />
 
-    <Button
-        android:text="Front Door"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonLock1"
-        android:background="#dedada"
-        android:alpha="0.5"
-        android:textColor="@android:color/background_dark"
-        android:layout_weight="0.16" />
 
-    <Button
-        android:text="Backdoor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonLock2"
-        android:background="@android:color/background_light"
-        android:alpha="0.5"
-        android:textColor="@android:color/background_dark"
-        android:layout_weight="0.16" />
-
-
-    <Button
-        android:text="Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonLock3"
-        android:background="#dedada"
-        android:alpha="0.5"
-        android:textColor="@android:color/background_dark"
-        android:layout_weight="0.16" />
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="296dp"
+        android:id="@+id/lockList"
+        android:layout_weight="0.14" />
 
     <view
         android:layout_width="match_parent"
