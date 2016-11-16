@@ -1,10 +1,12 @@
 package brendenbernal.homeautomation;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,6 +25,7 @@ public class ChooseLight extends AppCompatActivity {
         final DatabaseHelper db = new DatabaseHelper(this);
 
         List<Light> lights = db.getAllLights();
+        
 
         String[] lightsNames = new String[lights.size()];
 
@@ -39,6 +42,7 @@ public class ChooseLight extends AppCompatActivity {
 
     }
 
+
     private void populateListView(String[] lightsNames) {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, lightsNames);
@@ -46,12 +50,14 @@ public class ChooseLight extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
+
     public void registerClick(){
         ListView listView = (ListView) findViewById(R.id.lightList);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 TextView textview = (TextView) view;
                 Intent intent = new Intent(getApplicationContext(), LightAction.class);
                 intent.putExtra("name", textview.getText().toString());
