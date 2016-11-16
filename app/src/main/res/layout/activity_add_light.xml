@@ -22,7 +22,7 @@
         android:textColor="@android:color/background_dark"
         android:textSize="30sp"
         android:background="@android:color/background_light"
-        android:alpha="0.5"
+        android:alpha="0.75"
         android:layout_weight="0.02" />
 
     <Space
@@ -38,7 +38,7 @@
         android:layout_weight="0.03"
         android:textAlignment="center"
         android:background="#dedada"
-        android:alpha="0.5"
+        android:alpha="0.75"
         android:textColor="@android:color/background_dark"
         android:textSize="24sp" />
 
@@ -52,7 +52,7 @@
         android:layout_weight="0.10"
         android:textAlignment="center"
         android:background="@android:color/background_light"
-        android:alpha="0.5"
+        android:alpha="0.75"
         android:id="@+id/roomName" />
 
     <Space
@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/buttonAddButton"
         android:background="#dedada"
-        android:alpha="0.5"
+        android:alpha="0.75"
         android:textColor="@android:color/background_dark"
         android:layout_weight="0.06" />
 
@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/buttonBack"
         android:background="@android:color/background_light"
-        android:alpha="0.5"
+        android:alpha="0.75"
         android:textColor="@color/colorPrimaryDark"
         android:layout_weight="0.08" />
 

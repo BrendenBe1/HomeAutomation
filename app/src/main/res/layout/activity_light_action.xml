@@ -22,13 +22,13 @@
         android:textColor="@android:color/background_dark"
         android:textSize="30sp"
         android:background="@android:color/background_light"
-        android:alpha="0.5"
-        android:layout_weight="0.07" />
+        android:alpha="0.75"
+        android:layout_weight="0.02" />
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.11" />
+        android:layout_weight="0.06" />
 
     <Switch
         android:text="On/Off"
@@ -44,26 +44,33 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.14" />
+        android:layout_weight="0.07" />
+
+    <Button
+        android:text="Remove Light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/background_light"
+        android:id="@+id/buttonRemoveLight"
+        android:alpha="0.75"
+        android:layout_weight="0.03" />
 
     <Button
         android:text="Settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buttonSettings"
-        android:background="@android:color/background_light"
-        android:alpha="0.5"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_weight="0.07" />
+        android:background="#dedada"
+        android:alpha="0.75"
+        android:layout_weight="0.03" />
 
     <Button
         android:text="Back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buttonBack"
-        android:background="#dedada"
-        android:alpha="0.5"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_weight="0.07" />
+        android:background="@android:color/background_light"
+        android:alpha="0.75"
+        android:layout_weight="0.02" />
 
 </LinearLayout>

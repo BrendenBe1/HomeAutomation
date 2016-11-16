@@ -22,7 +22,7 @@
         android:textColor="@android:color/background_dark"
         android:textSize="30sp"
         android:background="@android:color/background_light"
-        android:alpha="0.5"
+        android:alpha="0.75"
         android:layout_weight="0.03" />
 
 
@@ -30,23 +30,28 @@
         android:layout_width="match_parent"
         android:layout_height="213dp"
         android:id="@+id/lightList"
-        android:layout_weight="0.19" />
+        android:layout_weight="0.16"
+        android:divider="@android:color/background_dark"
+        android:dividerHeight="1px"
+        android:background="#dedada"
+        android:alpha="0.75" />
 
     <view
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         class="android.support.v4.widget.Space"
         android:id="@+id/view"
-        android:layout_weight="0.14" />
+        android:layout_weight="0.10" />
 
     <Button
-        android:text="Add/Remove Light"
+        android:text="Add Light"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buttonEditLightList"
         android:background="@android:color/background_light"
-        android:alpha="0.5"
-        android:textColor="@color/colorPrimaryDark" />
+        android:alpha="0.75"
+        android:textColor="@color/colorPrimary"
+        android:layout_weight="0.04" />
 
     <Button
         android:text="Back"
@@ -54,7 +59,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/buttonBack"
         android:background="#dedada"
-        android:alpha="0.5"
-        android:textColor="@android:color/background_dark" />
+        android:alpha="0.75"
+        android:textColor="@android:color/background_dark"
+        android:layout_weight="0.05" />
 
 </LinearLayout>

@@ -21,13 +21,13 @@
         android:textStyle="normal|bold"
         android:textSize="30sp"
         android:background="@android:color/background_light"
-        android:alpha="0.5"
+        android:alpha="0.75"
         android:textColor="@android:color/background_dark" />
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.11" />
+        android:layout_weight="0.07" />
 
     <Switch
         android:text="Lock/Unlock"
@@ -37,22 +37,32 @@
         android:id="@+id/lockSwitch"
         android:layout_weight="0.04"
         android:background="#dedada"
-        android:alpha="0.5"
+        android:alpha="0.75"
         android:textSize="24sp" />
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.14" />
+        android:layout_weight="0.07" />
+
+    <Button
+        android:text="Remove Lock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/background_light"
+        android:alpha="0.75"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/buttonRemoveLock"
+        android:layout_weight="0.02" />
 
     <Button
         android:text="Back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buttonBack"
-        android:background="@android:color/background_light"
-        android:alpha="0.5"
-        android:textColor="@color/colorPrimaryDark"
+        android:background="#dedada"
+        android:alpha="0.75"
+        android:textColor="@color/colorPrimary"
         android:layout_weight="0.02" />
 
 </LinearLayout>

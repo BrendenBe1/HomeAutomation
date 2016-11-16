@@ -22,7 +22,7 @@
         android:textStyle="normal|bold"
         android:textSize="30sp"
         android:background="@android:color/background_light"
-        android:alpha="0.5"
+        android:alpha="0.75"
         android:textColor="@android:color/background_dark"
         android:layout_weight="0.07" />
 
@@ -31,7 +31,7 @@
         android:layout_height="145dp"
         android:id="@+id/timePickerThermoSettings"
         android:background="#dedada"
-        android:alpha="0.5"
+        android:alpha="0.75"
         android:timePickerMode="spinner"
         android:layout_gravity="center" />
 
@@ -45,7 +45,7 @@
         android:layout_height="100dp"
         android:layout_gravity="center"
         android:background="@android:color/background_light"
-        android:alpha="0.5"
+        android:alpha="0.75"
         android:id="@+id/numberPickerThermoSettings" />
 
     <Space
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/buttonSetTime"
         android:background="#dedada"
-        android:alpha="0.5"
+        android:alpha="0.75"
         android:textColor="@color/colorPrimaryDark"
         android:layout_weight="0.12" />
 
@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/buttonBack"
         android:background="@android:color/background_light"
-        android:alpha="0.5"
+        android:alpha="0.75"
         android:textColor="@color/colorPrimaryDark"
         android:layout_weight="0.10" />
 
