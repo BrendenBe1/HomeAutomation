@@ -142,6 +142,8 @@ public class ThermostatAction extends AppCompatActivity {
             @Override
             public void onClick (View v)
             {
+                db.deleteThermostat(thermostat);
+                db.close();
                 startActivity(new Intent(getApplicationContext(), ChooseThermostat.class));
             }
         });

@@ -130,6 +130,8 @@ public class LockAction extends AppCompatActivity {
             @Override
             public void onClick (View v)
             {
+                db.deleteLock(lock);
+                db.close();
                 startActivity(new Intent(getApplicationContext(), ChooseLock.class));
             }
         });

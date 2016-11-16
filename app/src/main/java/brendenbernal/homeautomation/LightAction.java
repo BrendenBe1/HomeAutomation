@@ -146,6 +146,8 @@ public class LightAction extends AppCompatActivity {
             @Override
             public void onClick (View v)
             {
+                db.deleteLight(light);
+                db.close();
                 startActivity(new Intent(getApplicationContext(), ChooseLight.class));
             }
         });
